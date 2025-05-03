@@ -1,6 +1,6 @@
 # DSA Sheet Solutions in C++
 
-This repository contains curated C++ solutions to the DSA Sheet. The focus is on writing clean, efficient code and covering multiple approaches (from brute force to optimal) wherever applicable.
+This repository contains curated C++ solutions to the DSA Sheet of SIDDARTH SINGH. The focus is on writing clean, efficient code and covering multiple approaches (from brute force to optimal) wherever applicable.
 
 ## Overview
 

@@ -19,6 +19,8 @@ public:
         int count_1 = 0, count_2 = 0;
         int element_1 = -1, element_2 = -1;
 
+        // algo => first need  to check element match if yes increase count, otherwise allot new element , if no mach and no allotment then just decrease count from both
+
         for (int i = 0; i < n;i++){
             if(element_1 == arr[i]){
                 count_1++;

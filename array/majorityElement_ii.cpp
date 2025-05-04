@@ -19,7 +19,7 @@ public:
         int count_1 = 0, count_2 = 0;
         int element_1 = -1, element_2 = -1;
 
-        // algo => first need  to check element match if yes increase count, otherwise allot new element , if no mach and no allotment then just decrease count from both
+        // algo =>  first need  to check element match if yes increase count, otherwise allot new element , if no mach and no allotment then just decrease count from both
 
         for (int i = 0; i < n;i++){
             if(element_1 == arr[i]){
@@ -35,6 +35,10 @@ public:
             else if(count_2 == 0){
                 element_2 = arr[i];
                 count_2++;
+            }
+            else{
+                count_1--;
+                count_2--;
             }
         }
 
@@ -60,7 +64,7 @@ public:
 
 int main(){
 
-    vector<int> arr = {1, 2, 1, 1, 2, 5, 3, 2};
+    vector<int> arr = {1, 2, 3, 1, 2, 5, 1, 2};
 
     Solution sol;
     vector<int> elements = sol.majorityElement_ii_opt(arr);

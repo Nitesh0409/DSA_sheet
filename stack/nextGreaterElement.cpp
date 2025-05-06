@@ -35,7 +35,7 @@ public:
 
     // t => O(n), s => O(n)
 
-    vector<int> nextLargerElement(vector<int> &arr)
+    vector<int> nextGreaterElement_opt(vector<int> &arr)
     {
         int n = arr.size();
         vector<int> result(n, -1);
@@ -58,7 +58,34 @@ public:
             // push current element
             s.push(arr[i]);
         }
+        return result;
+    }
 
+    // sometime question is on circular array and we have to find next greater then
+    // just first put all values of values in ascendig order in stack and then start applying earlier logic.
+    vector<int> nextGreaterElement_circular(vector<int> &nums)
+    {
+        int n = nums.size();
+
+        stack<int> s;
+        vector<int> result(n, -1);
+
+        for (int i = 2 * n - 1; i >= 0; --i)
+        {
+            int curr = nums[i % n];
+
+            while (!s.empty() && s.top() <= curr)
+            {
+                s.pop();
+            }
+
+            if (i < n)
+            {
+                result[i] = s.empty() ? -1 : s.top();
+            }
+
+            s.push(curr);
+        }
         return result;
     }
 };
@@ -68,7 +95,7 @@ int main(){
     vector<int> arr = {6, 8, 0, 1, 3};
 
     Solution sol;
-    vector<int>result = sol.nextGreaterElement_brute(arr);
+    vector<int>result = sol.nextGreaterElement_circular(arr);
 
     for(int val : result){
         cout << val<<" ";

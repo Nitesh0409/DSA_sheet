@@ -1,3 +1,10 @@
+// Que - 1 : https : // www.geeksforgeeks.org/problems/next-larger-element-1587115620/1
+// Que - 2 : https://leetcode.com/problems/next-greater-element-ii/description/
+// Que - 3 : https://leetcode.com/problems/daily-temperatures/
+// Que - 4 : https://www.geeksforgeeks.org/problems/stock-span-problem-1587115621/1
+// Que - 5 : https : // www.geeksforgeeks.org/find-maximum-difference-between-nearest-left-and-right-smaller-elements/
+
+
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -24,7 +31,6 @@ public:
 
         return result;
     }
-
 
     //this is optimization => using stack
     /* basically start from last and use following rule to fill result:
@@ -61,6 +67,8 @@ public:
         return result;
     }
 
+//-----------------------------------------------------------------------------------------------------------
+
     // sometime question is on circular array and we have to find next greater then
     // just first put all values of values in ascendig order in stack and then start applying earlier logic.
     vector<int> nextGreaterElement_circular(vector<int> &nums)
@@ -88,18 +96,135 @@ public:
         }
         return result;
     }
+
+//-----------------------------------------------------------------------------------------------------------
+
+    //smaller variation of this question:
+    // here we have to return only difference of index of day for warmer day then current
+    vector<int> dailyTemperatures(vector<int> &temperatures)
+    {
+        int n = temperatures.size();
+        vector<int> result(n, 0);
+        stack<int> s;
+
+        for (int i = n - 1; i >= 0; --i)
+        {
+            while (!s.empty() && temperatures[s.top()] <= temperatures[i])
+            {
+                s.pop();
+            }
+
+            if (!s.empty())
+            {
+                result[i] = s.top() - i;
+            }
+
+            s.push(i);
+        }
+        return result;
+    }
+
+
+//-----------------------------------------------------------------------------------------------------------
+
+    //🤯this is good variation of this ...so solve again.
+    //we have to return no. of continuos day for for which span is less then current.
+    vector<int> calculateSpan(vector<int> &arr)
+    {
+        // write code here
+        int n = arr.size();
+
+        vector<int> result(n,1);
+
+        stack<int>s;
+
+        for (int i = 0; i < n; i++)
+        {
+            while (!s.empty() && arr[s.top()] <= arr[i])
+            {
+                s.pop();
+            }
+
+            if (!s.empty())
+            {
+                result[i] = i - s.top();
+            }
+            else
+            {
+                result[i] = i+1;
+            }
+
+            s.push(i);
+        }
+        return result;
+    }
+
+//-----------------------------------------------------------------------------------------------------------
+
+    // good varition: basically we have to return max difference minimum value left and right of a index val
+    int maxDifference(vector<int> &arr)
+    {
+        // write code here
+        int n = arr.size();
+
+        vector<int> result1(n, 0);
+        vector<int> result2(n, 0);
+
+        stack<int> s1;
+        stack<int> s2;
+
+        for (int i = 0; i < n; i++)
+        {
+            while (!s1.empty() && s1.top() >= arr[i])
+            {
+                s1.pop();
+            }
+
+            if (!s1.empty())
+            {
+                result1[i] = s1.top();
+            }
+
+            s1.push(arr[i]);
+        }
+
+        for (int i = n-1; i >= 0; --i)
+        {
+            while (!s2.empty() && s2.top() >= arr[i])
+            {
+                s2.pop();
+            }
+
+            if (!s2.empty())
+            {
+                result2[i] = s2.top();
+            }
+
+            s2.push(arr[i]);
+        }
+
+        int maxDiff = 0;
+        for (int i = 0; i < n; i++)
+        {
+            maxDiff = max(maxDiff, abs(result1[i] - result2[i]));
+        }
+        return maxDiff;
+    }
+
 };
 
 int main(){
 
-    vector<int> arr = {6, 8, 0, 1, 3};
+    vector<int> arr = {2, 4, 8, 7, 7, 9, 3};
 
     Solution sol;
-    vector<int>result = sol.nextGreaterElement_circular(arr);
+    vector<int>result = sol.calculateSpan(arr);
 
     for(int val : result){
         cout << val<<" ";
     }
+
+    // cout << sol.maxDifference(arr) << endl;
 
     return 0;
 }

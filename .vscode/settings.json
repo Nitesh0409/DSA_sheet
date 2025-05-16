@@ -3,6 +3,7 @@
         "*.ejs": "html",
         "utility": "cpp",
         "queue": "cpp",
-        "map": "cpp"
+        "map": "cpp",
+        "vector": "cpp"
     }
 }

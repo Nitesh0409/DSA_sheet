@@ -121,6 +121,9 @@ public:
     // right side view
     vector<int> rightView(TreeNode *root)
     {
+        if(!root)
+            return {};
+            
         map<int, int> mp;               // row, value
         queue<pair<TreeNode *, int>> q; // node, row
 

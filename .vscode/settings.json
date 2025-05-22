@@ -4,6 +4,7 @@
         "utility": "cpp",
         "queue": "cpp",
         "map": "cpp",
-        "vector": "cpp"
+        "vector": "cpp",
+        "unordered_set": "cpp"
     }
 }

@@ -2,6 +2,8 @@
 
 using namespace std;
 
+
+//----------------- Fenwick Tree Formation and query O(log n)----------------------------
 class FenwickTree
 {
 private:
@@ -36,6 +38,8 @@ public:
     }
 
 };
+
+//------------------------------------------------------------------------------------
 
 class Solution{
 public:

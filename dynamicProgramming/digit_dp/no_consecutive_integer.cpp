@@ -21,7 +21,7 @@ class Solution{
         }
 
         int lb = 0; //lower bound
-        int ub = (tight == 0) ? 9 : (s[idx] - '0'); //upper bound
+        int ub = (tight == false) ? 9 : (s[idx] - '0'); //upper bound
 
         int res = 0;
         for (int dig = lb; dig <= ub; dig++){
@@ -43,15 +43,55 @@ class Solution{
         }
         return res;
     }
+
+    //-----------------------------memorisation---------------------------------------------------
+    int dp[10][2][10][2];
+    int solveWithMemo(string &s, int idx, bool tight, int prev, bool lead_zero)
+    {
+        if (idx == s.size())
+        {
+            return 1;
+        }
+
+        if(dp[idx][tight][prev][lead_zero] != -1)
+            return dp[idx][tight][prev][lead_zero];
+
+        int lb = 0;                                     // lower bound
+        int ub = (tight == false) ? 9 : (s[idx] - '0'); // upper bound
+
+        int res = 0;
+        for (int dig = lb; dig <= ub; dig++)
+        {
+            // invalid case
+            if (dig == prev && !lead_zero)
+                continue;
+
+            res += solve(s, idx + 1, (tight && (dig == ub)), dig, (lead_zero && dig == 0)); // efficient way
+        }
+        return dp[idx][tight][prev][lead_zero] = res;
+    }
+
 public:
     int totalInteger(int low, int high){
         string l = to_string(low-1);
         string h = to_string(high);
 
-        if(low == 0)
-            return solve(h, 0, true, 10, true);
+        // if(low == 0)
+        //     return solve(h, 0, true, 10, true);
 
-        return solve(h,0,true,10,1) - solve(l,0,true,10,true);
+        // return solve(h,0,true,10,1) - solve(l,0,true,10,true);
+
+        //---------------------memorisation call-----------------
+        memset(dp, -1, sizeof(dp));
+        int a = solveWithMemo(h, 0, true, 10, true);
+
+        int b = 0;
+        if(low == 0){
+            memset(dp, -1, sizeof(dp));
+            b = solveWithMemo(l, 0, true, 10, true);
+        }
+
+        return a - b;
     }
 };
 

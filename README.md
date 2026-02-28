@@ -5,7 +5,7 @@ This repository emphasizes **problem-solving depth, clean code, and systematic c
 
 ---
 
-## 📌 Overview
+## Overview
 
 - Implements DSA concepts and patterns with **increasing complexity**
 - Each topic includes:
@@ -18,7 +18,7 @@ This repository emphasizes **problem-solving depth, clean code, and systematic c
 
 ---
 
-## 📂 Repository Structure
+## Repository Structure
 
 - Organized **topic-wise**, with each folder representing a distinct DSA concept
 - Problems grouped to reflect **progressive learning and pattern recognition**
@@ -30,7 +30,7 @@ This repository emphasizes **problem-solving depth, clean code, and systematic c
 
 ---
 
-## 🎯 Purpose
+## Purpose
 
 - Demonstrates **strong DSA fundamentals** and problem-solving skills
 - Highlights ability to **identify and apply algorithmic patterns**
@@ -41,7 +41,7 @@ This repository emphasizes **problem-solving depth, clean code, and systematic c
 
 ---
 
-## 🛠 Tech Stack
+## Tech Stack
 
 - **Language:** C++
 

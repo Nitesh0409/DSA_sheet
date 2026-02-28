@@ -11,7 +11,8 @@ public:
     void segmentTreeFormation(vector<int>& nums){
         n = nums.size();
 
-        segment.resize(n * 4);
+        segment.resize(n * 4);  // we need to append some dummy node (approx 2n nodes so that it for power of 2) to make balance. 
+                                 // so total nodes => 2n(2n-1) => approx 4n
 
         buildSegment(0, 0, n - 1, nums);
     }
